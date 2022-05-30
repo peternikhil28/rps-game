@@ -1,5 +1,6 @@
-import IState from 'Engine/StateMachine/IState';
+import IState from 'NTEngine/StateMachine/IState';
 import Game from '../Game';
+import { GameOption } from '../GameData/GameData';
 
 export default class PlayerTurn implements IState
 {
@@ -12,10 +13,17 @@ export default class PlayerTurn implements IState
 
     start()
     {
-        
+       // this.input();
     }
 
-    end: () => void;
-    update: () => void;
-    
+    input(result:GameOption)
+    {
+        this.game.player.computeResult();
+
+        console.log("Player Result : ",  this.game.player.result);
+
+        this.game.setState(this.game.computerTurnState);
+    }
+
+    update: () => void; 
 }

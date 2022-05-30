@@ -18,7 +18,7 @@ let config = {
 
   resolve: {
     alias: {
-      Engine: path.resolve(__dirname, 'Engine')
+      NTEngine: path.resolve(__dirname, 'NTEngine')
     },
     extensions: ['.tsx','.ts', '.js'],
   },

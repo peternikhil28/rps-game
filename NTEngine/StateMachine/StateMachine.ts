@@ -1,4 +1,4 @@
-import IState from 'Engine/StateMachine/IState';
+import IState from './IState';
 
 export default class StateMachine
 {
@@ -10,11 +10,8 @@ export default class StateMachine
 
     setState(state : IState)
     {
-        if(this.state)
-            this.state.start();
+        state.start();
 
         this.state = state;
-
-        this.state.end();
     }
 }

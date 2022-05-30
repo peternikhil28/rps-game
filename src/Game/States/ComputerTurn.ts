@@ -1,4 +1,4 @@
-import IState from 'Engine/StateMachine/IState';
+import IState from 'NTEngine/StateMachine/IState';
 import Game from '../Game';
 
 export default class ComputerTurn implements IState
@@ -12,10 +12,17 @@ export default class ComputerTurn implements IState
 
     start()
     {
-        
+        this.computeResult();
     }
 
-    end: () => void;
+    computeResult()
+    {
+        this.game.computer.computeResult();
+
+        console.log("Computer Result : ",  this.game.computer.result);
+
+        this.game.setState(this.game.resultState);
+    }
+
     update: () => void;
-    
 }

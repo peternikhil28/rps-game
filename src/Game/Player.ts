@@ -1,21 +1,27 @@
+import Utils from "../../NTEngine/Utils";
+import { GameData, GameOption } from "./GameData/GameData";
+
+
 export default class Player{
 
-    score:Number;
-    bot:Boolean;
+    score:number;
+    bot:boolean;
 
-    result:string;
+    result:GameOption;
 
-    constructor(bot : Boolean)
+    constructor(config : {bot : boolean} = null)
     {
         this.score = 0;
-        this.bot = bot;
+        this.bot = config.bot;
     }
 
-    play()
+    computeResult()
     {
-        if(this.bot)
-        {
-           // result = 
-        }
+        if(!this.bot)
+            throw "Take input from the player";
+        
+        let gameOptions = GameData.getInstance().GameOptions;
+
+        this.result = gameOptions[Utils.getRandomInt(0,gameOptions.length-1)];
     }
 }

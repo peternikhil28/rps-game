@@ -1,6 +1,5 @@
-export default class GameData 
+class GameData 
 {
-
     private static instance: GameData;
 
     GameOptions : GameOption[];
@@ -27,6 +26,11 @@ export default class GameData
     
         return GameData.instance;
     }
+
+    public getOptionName(id:number)
+    {
+        return GameData.getInstance().GameOptions.find(data => data.id === id).name;
+    }
 }
 
 
@@ -42,3 +46,5 @@ class PlayData
     win:number;
     lose:number;
 }
+
+export {GameData, GameOption, PlayData}
