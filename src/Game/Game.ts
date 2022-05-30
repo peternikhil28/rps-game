@@ -11,7 +11,7 @@ import GameLayout from "./GameLayout";
 
 export default class Game extends Scene
 {
-    view : any;
+    view : GameLayout;
 
     player : Player;
     computer : Player;

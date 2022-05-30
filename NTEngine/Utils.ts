@@ -7,26 +7,29 @@ export default class Utils {
     static createSprite(assetPath:string, objectData:ObjectData)
     {
         let gameObject = new PIXI.Sprite();
+        gameObject.anchor.set(0.5, 0.5);
         gameObject.name = objectData.name;
         gameObject.texture = this.getTexture(assetPath, objectData.name);
-;        gameObject.position.set(objectData.x-objectData.w/2, objectData.y-objectData.h/2);
+;        gameObject.position.set(objectData.x, objectData.y);
         return gameObject;
     }
 
     static createButton(assetPath:string, objectData:ObjectData)
     {
         let gameObject = new Button();
+        gameObject.anchor.set(0.5, 0.5);
         gameObject.name = objectData.name;
         gameObject.texture = this.getTexture(assetPath, objectData.name);
-;       gameObject.position.set(objectData.x-objectData.w/2, objectData.y-objectData.h/2);
+;       gameObject.position.set(objectData.x, objectData.y);
         return gameObject;
     }
   
     static createText(objectData:ObjectData)
     {
         let gameObject = new PIXI.Text("", objectData.style);
+        gameObject.anchor.set(0.5, 0.5);
         gameObject.name = objectData.name;
-        gameObject.position.set(objectData.x-objectData.w/2, objectData.y-objectData.h/2);
+        gameObject.position.set(objectData.x, objectData.y);
         return gameObject;
     }
    

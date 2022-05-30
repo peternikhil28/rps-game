@@ -3,15 +3,14 @@ import IState from './IState';
 export default class StateMachine
 {
     state : IState
-    constructor()
-    {
-        this.state = null;
-    }
-
+   
     setState(state : IState)
     {
-        state.start();
+        if(this.state)
+            this.state.end();
 
         this.state = state;
+
+        this.state.start();
     }
 }

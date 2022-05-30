@@ -24,4 +24,9 @@ export default class Player{
 
         this.result = gameOptions[Utils.getRandomInt(0,gameOptions.length-1)];
     }
+
+    input(optionName:string)
+    {
+        this.result = GameData.getInstance().GameOptions.find(data => data.name === optionName);
+    }
 }

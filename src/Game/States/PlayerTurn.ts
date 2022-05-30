@@ -13,16 +13,26 @@ export default class PlayerTurn implements IState
 
     start()
     {
-       // this.input();
+    
     }
 
-    input(result:GameOption)
+    end()
     {
-        this.game.player.computeResult();
+        this.updateUI();
+    }
 
+    setResult(result:GameOption)
+    {
+        this.game.player.result = result; 
+    
         console.log("Player Result : ",  this.game.player.result);
 
         this.game.setState(this.game.computerTurnState);
+    }
+
+    updateUI()
+    {
+        this.game.view.updatePlayerResult(this.game.player.result.name);
     }
 
     update: () => void; 

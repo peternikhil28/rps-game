@@ -5,11 +5,12 @@ import { GameData } from "./GameData/GameData";
 
 export default class GameLayout extends LayoutImporter{
 
-    _txtPlayerScore:PIXI.Text;
-    _txtComputerScore:PIXI.Text;
+    private _txtPlayerScore:PIXI.Text;
+    private _txtComputerScore:PIXI.Text;
+    private _txtWin:PIXI.Text;
 
-    _playerResult:PIXI.Sprite;
-    _computerResult:PIXI.Sprite;
+    private _playerResult:PIXI.Sprite;
+    private _computerResult:PIXI.Sprite;
 
     createCustomObject(objectData: ObjectData): any 
     {
@@ -17,8 +18,9 @@ export default class GameLayout extends LayoutImporter{
         {
             case "Result":
                 let gameObject = new PIXI.Sprite();
+                gameObject.anchor.set(0.5, 0.5);
                 gameObject.name = objectData.name;
-                gameObject.position.set(objectData.x-objectData.w/2, objectData.y-objectData.h/2);
+                gameObject.position.set(objectData.x, objectData.y);
                 return gameObject;
         }
     }
@@ -35,6 +37,10 @@ export default class GameLayout extends LayoutImporter{
                 this._txtComputerScore = object;
                 break;
 
+            case "txtWin":
+                this._txtWin = object;
+                break;
+
             case "Player":
                 this._playerResult = object;
                 break;
@@ -45,9 +51,22 @@ export default class GameLayout extends LayoutImporter{
         }
     }
 
-    onButtonClicked(callback: any): void 
+    onButtonClicked(target:any)
     {
-        
+        switch(target.name)
+        {
+            case "btnRock":
+                this.parent.playerTurnState.setResult(GameData.getInstance().GameOptions.find(data => data.name === "Rock"));
+                break;
+
+            case "btnPaper":
+                this.parent.playerTurnState.setResult(GameData.getInstance().GameOptions.find(data => data.name === "Paper"));
+                break;
+
+            case "btnScissor":
+                this.parent.playerTurnState.setResult(GameData.getInstance().GameOptions.find(data => data.name === "Scissor"));
+                break;
+        }
     }
 
     onLayoutComplete(): void {
@@ -57,23 +76,28 @@ export default class GameLayout extends LayoutImporter{
         this.updateComputerScore(0);
     }
 
+    set txtWin(text:string)
+    {
+        this._txtWin.text = text;
+    }
+
     updatePlayerScore(score:number)
     {
-        this._txtPlayerScore.text = "Score : " + score;
+        this._txtPlayerScore.text = "Player Score : " + score;
     }
 
     updateComputerScore(score:number)
     {
-        this._txtComputerScore.text = "Score : " + score;
+        this._txtComputerScore.text = "Computer Score : " + score;
     }
 
-    updatePlayerResult(id:number)
+    updatePlayerResult(name:string)
     {
-        this._playerResult.texture = Utils.getTexture(this.assetFolder, GameData.getInstance().getOptionName(id));
+        this._playerResult.texture = Utils.getTexture(this.assetFolder + this.assetName, name);
     }
 
-    updateComputerResult(id:number)
+    updateComputerResult(name:string)
     {
-        this._computerResult.texture = Utils.getTexture(this.assetFolder, GameData.getInstance().getOptionName(id));
+        this._computerResult.texture = Utils.getTexture(this.assetFolder + this.assetName, name);
     }
 }

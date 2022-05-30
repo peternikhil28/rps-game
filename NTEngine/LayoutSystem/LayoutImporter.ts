@@ -8,13 +8,13 @@ export default class LayoutImporter
 
     assetName:string
 
-    parent:PIXI.Container
+    parent:any
 
     _onLoadCallback:any;
     _onClickCallback:any;
 
 
-    constructor(parent:PIXI.Container)
+    constructor(parent:any)
     {
         this.parent = parent;
     }

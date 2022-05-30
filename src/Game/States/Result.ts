@@ -18,6 +18,11 @@ export default class Result implements IState
         this.game.setState(this.game.startState);
     }
 
+    end()
+    {
+
+    }
+
     evaluate()
     {
         let playerId = this.game.player.result.id;
@@ -46,19 +51,22 @@ export default class Result implements IState
 
     win()
     {
-        console.log("Player Wins!!")
+        console.log("Player Wins!!");
+        this.game.view.txtWin = "Player Wins!!";
         this.game.player.score += 1;
     }
 
     lose()
     {
         console.log("Computer Wins. Better Luck Next Time.");
+        this.game.view.txtWin = "Computer Wins. Better Luck Next Time.";
         this.game.computer.score += 1;
     }
 
     draw()
     {
         console.log("Match Draw")
+        this.game.view.txtWin = "Match Draw";
 
         this.game.player.score += 1;
         this.game.computer.score += 1;

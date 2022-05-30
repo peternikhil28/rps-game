@@ -16,7 +16,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":699,"h":465},
 	"sourceSize": {"w":699,"h":465}
 },
-"btnPapper.png":
+"btnPaper.png":
 {
 	"frame": {"x":700,"y":0,"w":163,"h":167},
 	"rotated": false,
@@ -40,7 +40,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":163,"h":167},
 	"sourceSize": {"w":163,"h":167}
 },
-"Papper.png":
+"Paper.png":
 {
 	"frame": {"x":326,"y":465,"w":225,"h":225},
 	"rotated": false,

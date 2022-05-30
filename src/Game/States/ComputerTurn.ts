@@ -15,6 +15,11 @@ export default class ComputerTurn implements IState
         this.computeResult();
     }
 
+    end()
+    {
+        this.updateUI();
+    }
+
     computeResult()
     {
         this.game.computer.computeResult();
@@ -22,6 +27,11 @@ export default class ComputerTurn implements IState
         console.log("Computer Result : ",  this.game.computer.result);
 
         this.game.setState(this.game.resultState);
+    }
+
+    updateUI()
+    {
+        this.game.view.updateComputerResult(this.game.computer.result.name);
     }
 
     update: () => void;

@@ -19,6 +19,11 @@ export default class Start implements IState
         this.game.setState(this.game.playerTurnState);
     }
 
+    end()
+    {
+
+    }
+
     update: () => void;
 
     updateScore()
