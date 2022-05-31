@@ -56,15 +56,15 @@ export default class GameLayout extends LayoutImporter{
         switch(target.name)
         {
             case "btnRock":
-                this.parent.stateMachine.playerTurnState.setResult(GameData.getInstance().GameOptions.find(data => data.name === "Rock"));
+                this.scene.stateMachine.playerTurnState.setResult(GameData.getInstance().GameOptions.find(data => data.name === "Rock"));
                 break;
 
             case "btnPaper":
-                this.parent.stateMachine.playerTurnState.setResult(GameData.getInstance().GameOptions.find(data => data.name === "Paper"));
+                this.scene.stateMachine.playerTurnState.setResult(GameData.getInstance().GameOptions.find(data => data.name === "Paper"));
                 break;
 
             case "btnScissor":
-                this.parent.stateMachine.playerTurnState.setResult(GameData.getInstance().GameOptions.find(data => data.name === "Scissor"));
+                this.scene.stateMachine.playerTurnState.setResult(GameData.getInstance().GameOptions.find(data => data.name === "Scissor"));
                 break;
         }
     }
