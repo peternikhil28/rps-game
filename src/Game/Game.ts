@@ -8,15 +8,15 @@ import Start from "./StateMachine/States/Start";
 import Scene from "NTEngine/Scene";
 import GameLayout from "./GameLayout";
 import GameStateMachine from "./StateMachine/GameStateMachine";
-import { Computer, Player } from "./Player/Player";
+import { ComputerPlayer, MainPlayer } from "./Player/Player";
 
 
 export default class Game extends Scene
 {
     view : GameLayout;
 
-    player : Player;
-    computer : Computer;
+    player : MainPlayer;
+    computer : ComputerPlayer;
 
     stateMachine : GameStateMachine;
 
@@ -39,9 +39,9 @@ export default class Game extends Scene
 
     loadPlayers()
     {
-        this.player = new Player();
+        this.player = new MainPlayer();
 
-        this.computer = new Computer();
+        this.computer = new ComputerPlayer();
     }
 
     start()

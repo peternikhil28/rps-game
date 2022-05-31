@@ -1,51 +1,49 @@
 import Utils from "NTEngine/Utils";
 import { GameData, GameOption } from "../GameData/GameData";
 
-class Score
+class Player
 {
     score:number;
+
+    result:GameOption;
 
     constructor()
     {
         this.score = 0;
     }
-}
 
-type GConstructor<T = {}> = new (...args: any[]) => T;
-type ScoreBase = GConstructor<Score>;
-
-function PlayerEvaluator<TBase extends ScoreBase>(Base: TBase) {
-  return class PlayerController extends Base {
-   
-    result:GameOption;
-
-    input(optionName:string)
-    {
-       this.evaluate(optionName);
-    }
-
-    evaluate(optionName:string)
+    setResult(optionName:string)
     {
         this.result = GameData.getInstance().GameOptions.find(data => data.name === optionName);
     }
+}
+
+type GConstructor<T = {}> = new (...args: any[]) => T;
+type PlayerBase = GConstructor<Player>;
+
+function PlayerInput<TBase extends PlayerBase>(Base: TBase) {
+  return class PlayerController extends Base {
+   
+    input(optionName:string)
+    {
+       this.setResult(optionName);
+    }    
   };
 }
 
-function BotEvaluator<TBase extends ScoreBase>(Base: TBase) {
+function GenerateResult<TBase extends PlayerBase>(Base: TBase) {
     return class PlayerController extends Base {
      
-        result:GameOption;
-      
-        evaluate()
+        generateResult()
         { 
             let gameOptions = GameData.getInstance().GameOptions;
 
-            this.result = gameOptions[Utils.getRandomInt(0,gameOptions.length-1)];
+            this.setResult(gameOptions[Utils.getRandomInt(0,gameOptions.length-1)].name);
         }
     };
   }
 
-  class Player extends PlayerEvaluator(Score){}
-  class Computer extends BotEvaluator(Score){}
+  class MainPlayer extends PlayerInput(Player){}
+  class ComputerPlayer extends GenerateResult(Player){}
 
-  export {Player, Computer};
+  export {MainPlayer, ComputerPlayer};

@@ -22,7 +22,7 @@ export default class ComputerTurn implements IGameState
 
     computeResult()
     {
-        this.gameStateMachine.game.computer.computeResult();
+        this.gameStateMachine.game.computer.generateResult();
 
         console.log("Computer Result : ",  this.gameStateMachine.game.computer.result);
 

@@ -64,9 +64,6 @@ export default class Result implements IState
     draw()
     {
         this.gameStateMachine.game.view.txtWin = "Match Draw";
-
-        this.gameStateMachine.game.player.score += 1;
-        this.gameStateMachine.game.computer.score += 1;
     }
 
     update: () => void;
