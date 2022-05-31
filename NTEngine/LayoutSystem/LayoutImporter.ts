@@ -8,15 +8,15 @@ export default class LayoutImporter
 
     assetName:string
 
-    parent:any
+    scene:any
 
     _onLoadCallback:any;
     _onClickCallback:any;
 
 
-    constructor(parent:any)
+    constructor(scene:any)
     {
-        this.parent = parent;
+        this.scene = scene;
     }
 
     // -- Load Layout --
@@ -86,7 +86,7 @@ export default class LayoutImporter
 
     addChild(gameObject:any)
     {
-        this.parent.addChild(gameObject);
+        this.scene.addChild(gameObject);
     }
 
     onLayoutComplete()
