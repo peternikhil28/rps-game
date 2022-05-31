@@ -6,11 +6,6 @@ class GameData
 
     PlayData : PlayData[];
 
-    constructor() 
-    { 
-
-    }
-
     public static init(data:Object): GameData 
     {
         if (!GameData.instance) 

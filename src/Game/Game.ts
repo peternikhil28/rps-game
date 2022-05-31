@@ -1,41 +1,34 @@
 
 import IState from "../../NTEngine/StateMachine/IState";
 import StateMachine from "../../NTEngine/StateMachine/StateMachine";
-import Player from "./Player";
-import ComputerTurn from "./States/ComputerTurn";
-import Result from "./States/Result";
-import PlayerTurn from "./States/PlayerTurn";
-import Start from "./States/Start";
+import ComputerTurn from "./StateMachine/States/ComputerTurn";
+import Result from "./StateMachine/States/Result";
+import PlayerTurn from "./StateMachine/States/PlayerTurn";
+import Start from "./StateMachine/States/Start";
 import Scene from "NTEngine/Scene";
 import GameLayout from "./GameLayout";
+import GameStateMachine from "./StateMachine/GameStateMachine";
+import { Computer, Player } from "./Player/Player";
+
 
 export default class Game extends Scene
 {
     view : GameLayout;
 
     player : Player;
-    computer : Player;
+    computer : Computer;
 
-    stateMachine : StateMachine;
-
-    startState : Start;
-    playerTurnState : PlayerTurn;
-    computerTurnState : ComputerTurn;
-    resultState : Result;
+    stateMachine : GameStateMachine;
 
     constructor()
     {
         super();
 
-        this.stateMachine = new StateMachine();
+        this.stateMachine = new GameStateMachine(this);
 
         this.loadView();
 
         this.loadPlayers();
-
-        this.loadStates();
-
-        this.setState(this.startState);
     }
 
     loadView()
@@ -46,23 +39,14 @@ export default class Game extends Scene
 
     loadPlayers()
     {
-        this.player = new Player({bot:true});
-        this.computer = new Player({bot:true});
+        this.player = new Player();
+
+        this.computer = new Computer();
     }
 
-    loadStates()
+    start()
     {
-        this.startState = new Start(this);
-        this.playerTurnState = new PlayerTurn(this);
-        this.computerTurnState = new ComputerTurn(this);
-        this.resultState = new Result(this);
+        this.stateMachine.start();
     }
-
-    setState(state : IState)
-    {
-        this.stateMachine.setState(state);
-    }
-
-   
 }
 
